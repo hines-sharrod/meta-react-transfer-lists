@@ -1,13 +1,12 @@
 /* eslint-disable react/prop-types */
-const DirectionalButtons = ({ leftList, setLeftList, rightList, setRightList, checkedItems }) => {
+const DirectionalButtons = ({ leftList, rightList, checkedItems, transferItems }) => {
   const transferRight = () => {
-    console.log(checkedItems);
     const freeToTransfer = checkedItems.every((item) => {
       return !rightList.includes(item);
     });
 
     if (freeToTransfer) {
-      setRightList([...rightList, ...checkedItems]);
+      transferItems(leftList, rightList, "leftList");
     }
   };
 
@@ -17,7 +16,7 @@ const DirectionalButtons = ({ leftList, setLeftList, rightList, setRightList, ch
     });
 
     if (freeToTransfer) {
-      setLeftList([...leftList, checkedItems]);
+      transferItems(rightList, leftList, "rightList");
     }
   };
 
